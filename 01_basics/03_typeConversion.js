@@ -22,4 +22,4 @@ console.log(typeof converted_temp); // number
 console.log(converted_loggedIn);    // 1
 console.log(Boolean(2));    // true
 console.log(Boolean(""));   // false
-console.log(Boolean("aryan"));  // true
+console.log(Boolean("neha"));  // true
