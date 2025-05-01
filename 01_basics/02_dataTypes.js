@@ -6,7 +6,7 @@
 // boolean => true or false
 // null => standalone value (not 0 or undefined)
 // undefined => not asigned to any value
-// symbol => uniqeness
+// symbol => represents uniqeness
 
 // object => special type
 // NaN => Not a Number (but it's type is number)
