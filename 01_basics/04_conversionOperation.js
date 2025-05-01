@@ -27,3 +27,7 @@ console.log(4 + null);  // 4 - number (null converts to 0)
 console.log(null + 6);  // 6 - number (null converts to 0)
 
 // During Other Operations JS converts to number
+
+
+
+// how it happens: https://tc39.es/ecma262/multipage/abstract-operations.html#sec-type-conversion
