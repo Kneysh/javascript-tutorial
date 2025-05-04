@@ -62,6 +62,17 @@ const obj3 = {...obj1, ...obj2};
 // console.log(obj3);
 
 // Object methods (built-in)
-console.log(Object.keys(obj3)); // creates an array of all the keys
-console.log(Object.values(obj3)); // creates an array of all the values
-console.log(Object.entries(obj3)); // creates a 2D array consisting multiple arrays of [key, value] pairs array: [[key1, value1], [key2, value2]]
+// console.log(Object.keys(obj3)); // creates an array of all the keys
+// console.log(Object.values(obj3)); // creates an array of all the values
+// console.log(Object.entries(obj3)); // creates a 2D array consisting multiple arrays of [key, value] pairs array: [[key1, value1], [key2, value2]]
+
+
+// Object Destructuring
+const employee = {
+    fullName: "Neha Ahmed",
+    role: "Chief Security Officer",
+    salary: "150K",
+}
+
+const {fullName: name} = employee;
+// console.log(name);
