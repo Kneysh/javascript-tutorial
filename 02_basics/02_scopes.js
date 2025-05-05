@@ -33,7 +33,7 @@ const func = one();     // stores the entire definition of function two into the
 console.log(func());    // func is now same as function two and can be executed as func() like two()
 
 
-// +++++++++++++++++++++++++++++++++++++++++++++++++
+// +++++++++++++++++++++++++++++++++++++++++++++++++++
 
 // Expression: works like a function but is a variable, so cannot be accessed before declaring
 // console.log(add(3, 5));  [cannot access]
