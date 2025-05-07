@@ -1,0 +1,24 @@
+.bg-black {
+    background-color: black;
+    color: white;
+}
+
+.box {
+    height: 100px;
+    width: 200px;
+    padding: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.box-1 {
+    background-color: red;
+}
+
+.box-2 {
+    background-color: green;
+}
+
+.box-3 {
+    background-color: blue;
+}
