@@ -56,7 +56,15 @@ form.addEventListener('submit', (e) => {
 ## project 03:
 
 ```javascript
+const clockDisplay = document.getElementById('clock');
 
+// run after every one second
+setInterval(() => {
+  const date = new Date();
+  const localTime = date.toLocaleTimeString();
+  const timeZone = date.toDateString();
+  clockDisplay.innerText = `${timeZone}\n${localTime}`;
+}, 1000);
 ```
 
 ## project 04:
