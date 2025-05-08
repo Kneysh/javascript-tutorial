@@ -70,5 +70,102 @@ setInterval(() => {
 ## project 04:
 
 ```javascript
+const form = document.querySelector('form');
+const submit = document.querySelector('#subt');
+const guessField = document.querySelector('.guessField');
+const guesses = document.querySelector('.guesses');
+const remaining = document.querySelector('.lastResult');
+const hint = document.querySelector('.lowOrHigh');
+const resultParas = document.querySelector('.resultParas');
 
+let random = Math.floor(Math.random() * 100 + 1);
+const totalGuesses = 10;
+remaining.innerHTML = `${totalGuesses}`;
+
+const p = document.createElement('p');
+
+let prevGuesses = [];
+let playGame = true;
+
+if (playGame) {
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const userGuess = parseInt(guessField.value);
+    validateGuess(userGuess);
+  });
+}
+
+function validateGuess(guess) {
+  if (guess === '' || 1 > guess > 100 || isNaN(guess)) {
+    alert('Please enter a valid guess (1-100)');
+    guessField.value = '';
+    return;
+  }
+
+  prevGuesses.push(guess);
+  if (prevGuesses.length === totalGuesses && guess === random) {
+    displayGuess(guess);
+    displayMessage(
+      `Congratulations! You guessed the correct number: ${random}`
+    );
+    endGame();
+  } else if (prevGuesses.length === totalGuesses) {
+    displayGuess(guess);
+    displayMessage(`Oops! You've run out of guesses. The number was ${random}`);
+    endGame();
+  } else {
+    displayGuess(guess);
+    checkGuess(guess);
+  }
+}
+
+function checkGuess(guess) {
+  if (guess === random) {
+    displayMessage(
+      `Congratulations! You guessed the correct number: ${random}`
+    );
+    endGame();
+  } else if (guess > random) {
+    displayMessage(`Try Lower!`);
+    displayGuess(guess);
+  } else if (guess < random) {
+    displayMessage(`Try higher!`);
+    displayGuess(guess);
+  }
+}
+
+function displayGuess(guess) {
+  guessField.value = '';
+  guesses.innerHTML = ` ${prevGuesses}`;
+  remaining.innerHTML = `${totalGuesses - prevGuesses.length}`;
+}
+
+function displayMessage(message) {
+  hint.innerHTML = `${message}`;
+}
+
+function endGame() {
+  playGame = false;
+  guessField.setAttribute('disabled', '');
+  submit.setAttribute('disabled', '');
+  p.classList.add('btn', 'newGame');
+  p.innerHTML = 'Start New Game';
+  resultParas.appendChild(p);
+  startGame();
+}
+
+function startGame() {
+  const newGameBtn = document.querySelector('.newGame');
+  newGameBtn.addEventListener('click', (e) => {
+    random = Math.floor(Math.random() * 100 + 1);
+    guessField.removeAttribute('disabled');
+    submit.removeAttribute('disabled');
+    prevGuesses = [];
+    guesses.innerHTML = '';
+    hint.innerHTML = '';
+    remaining.innerHTML = `${totalGuesses}`;
+    resultParas.removeChild(p);
+    playGame = true;
+  });
+}
 ```
