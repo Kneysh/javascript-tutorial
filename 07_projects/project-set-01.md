@@ -22,7 +22,35 @@ buttons.forEach((button) => {
 ## project 02:
 
 ```javascript
+// const height = Number(document.querySelector("#height").textContent);
+// const weight = Number(document.querySelector("#weight").textContent);
+// [accessing the value before 'submit' will give empty value when page is loaded]
 
+const form = document.querySelector('form');
+
+function bmiCalculate(height, weight) {
+  const BMI = weight / (height * height);
+  return BMI.toFixed(1);
+}
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // [prevents form submitting]
+
+  const height = Number(document.querySelector('#height').value); // ['value' because this is an input field]
+  const weight = Number(document.querySelector('#weight').value); // ['value' because this is an input field]
+  const heightInMeters = height / 100;
+  const resultText = document.querySelector('#results');
+
+  if (height === '' || height < 0 || isNaN(height)) {
+    return (resultText.innerHTML = 'Please give a valid number');
+  }
+  if (weight === '' || weight < 0 || isNaN(weight)) {
+    return (resultText.innerHTML = 'Please give a valid number');
+  }
+  
+  const result = bmiCalculate(heightInMeters, weight);
+  resultText.innerHTML = result;
+});
 ```
 
 ## project 03:
