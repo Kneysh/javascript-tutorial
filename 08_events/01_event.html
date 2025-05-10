@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handlers</title>
+</head>
+<body style="color:aliceblue; background-color: #333">
+    <ul style="display: flex; flex-direction: column; gap: 10px" id="boxes">
+        <li><div style="width: 100px; height:100px; background-color: #671211;" id="01" class="box">01</div></li>
+        <li><div style="width: 100px; height:100px; background-color: #671211;" id="02" class="box">02</div></li>
+        <li><div style="width: 100px; height:100px; background-color: #671211;" id="03" class="box">03</div></li>
+        <li><div style="width: 100px; height:100px; background-color: #671211;" id="04" class="box">04</div></li>
+        <li><div style="width: 100px; height:100px; background-color: #671211;" id="05" class="box">05</div></li>
+        <li><div style="width: 100px; height:100px; background-color: #671211;" id="06" class="box">06</div></li>
+        <li><a href="https://facebook.com/neyshank" target="_blank" style="color: aliceblue" id="link">NK Neyshan</a></li>
+    </ul>
+
+
+    <script>
+        // [need to study]
+        /**
+         * {type, timestamp, preventDefault},
+         * {target, toElement, srcElement, currentTarget},
+         * {clientX, clientY, screenX, screenY},
+         * {altkey, ctrlkey, shiftkey, keyCode}
+        */
+        
+        // document.querySelector("#link").addEventListener('click', (e) => {e.preventDefault()}, false);
+
+        // boxes.addEventListener('click', function(e){
+            //     console.log(e);
+        // }, false);
+        
+
+        // removing clicked boxes
+        // [process 01]
+        const box = document.querySelectorAll(".box");
+        box.forEach((box) => {
+            box.addEventListener('click', function(e){
+                box.parentNode.remove();
+            }, false);
+        });
+        
+        // [process 02]
+        const boxes = document.querySelector("#boxes");
+        boxes.addEventListener('click', function(e){
+            if (e.target.tagName === "DIV") {
+                e.target.parentNode.remove();
+            }
+        }, false);
+
+        
+        /** 
+         * [back-propogation]: when an eventListener is added to an element, it also triggers/executes its parent elements' functions if the same eventListener is added to them. true/false/default applies to the parent.
+ 
+         * [capturing]:{when set to 'true'} function execution sequence => from top parent to last child.
+         boxes.addEventListener('click', function(e){console.log("This is the parent.")}, true);   // this will execute first
+         box.forEach((box) => {box.addEventListener('click', function(e){console.log(`This is box ${e.target.id}`)}, false)});    // this will execute last
+         
+         * [bubbling]:{default / when set to 'false'} function execution sequence => from last child to top parent.
+         boxes.addEventListener('click', function(e){console.log("This is the parent.")}, false);   // this will execute last
+         box.forEach((box) => {box.addEventListener('click', function(e){console.log(`This is box ${e.target.id}`)}, false)});    // this will execute first
+         
+         * [stopPropogation()]: stops propogation. only executes targeted element's function. need to set 'false' or default on parent.
+         boxes.addEventListener('click', function(e){console.log("This is the parent.")}, false);   // this will not execute
+         box.forEach((box) => {
+             box.addEventListener('click', function(e){
+                 e.stopPropagation()
+                 console.log(`This is box ${e.target.id}`)
+             }, false);
+         });    // only this will execute
+        */
+    
+    </script>
+</body>
+</html>
